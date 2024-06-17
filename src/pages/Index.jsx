@@ -1,4 +1,4 @@
-import { FaNetworkWired } from "react-icons/fa";
+import { FaNetworkWired, FaCheckCircle, FaTimesCircle, FaExclamationTriangle } from "react-icons/fa";
 import { Line } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -18,6 +18,15 @@ const Index = () => {
       });
   }, []);
 
+  const devices = [
+    { name: "Cisco Router 1", status: "Online", brand: "Cisco", icon: <FaCheckCircle className="text-green-500" /> },
+    { name: "Juniper Switch 1", status: "Online", brand: "Juniper", icon: <FaCheckCircle className="text-green-500" /> },
+    { name: "Fortinet Router 2", status: "Offline", brand: "Fortinet", icon: <FaTimesCircle className="text-red-500" /> },
+    { name: "Cisco Switch 2", status: "Maintenance", brand: "Cisco", icon: <FaExclamationTriangle className="text-yellow-500" /> },
+    { name: "Juniper Router 3", status: "Online", brand: "Juniper", icon: <FaCheckCircle className="text-green-500" /> },
+    { name: "Fortinet Switch 3", status: "Online", brand: "Fortinet", icon: <FaCheckCircle className="text-green-500" /> },
+  ];
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold underline mb-4">
@@ -27,30 +36,18 @@ const Index = () => {
         <Line data={data} />
       </div>
       <div className="bg-white p-4 rounded shadow grid grid-cols-3 gap-4">
-        <div className="bg-blue-500 text-white p-4 rounded">
-          <h2 className="text-xl font-bold">Router 1</h2>
-          <p>Status: Online</p>
-        </div>
-        <div className="bg-green-500 text-white p-4 rounded">
-          <h2 className="text-xl font-bold">Switch 1</h2>
-          <p>Status: Online</p>
-        </div>
-        <div className="bg-red-500 text-white p-4 rounded">
-          <h2 className="text-xl font-bold">Router 2</h2>
-          <p>Status: Offline</p>
-        </div>
-        <div className="bg-yellow-500 text-white p-4 rounded">
-          <h2 className="text-xl font-bold">Switch 2</h2>
-          <p>Status: Maintenance</p>
-        </div>
-        <div className="bg-blue-500 text-white p-4 rounded">
-          <h2 className="text-xl font-bold">Router 3</h2>
-          <p>Status: Online</p>
-        </div>
-        <div className="bg-green-500 text-white p-4 rounded">
-          <h2 className="text-xl font-bold">Switch 3</h2>
-          <p>Status: Online</p>
-        </div>
+        {devices.map((device, index) => (
+          <div key={index} className="bg-gray-100 text-gray-800 p-4 rounded flex items-center">
+            <div className="mr-4">
+              {device.icon}
+            </div>
+            <div>
+              <h2 className="text-xl font-bold">{device.name}</h2>
+              <p>Brand: {device.brand}</p>
+              <p>Status: {device.status}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
