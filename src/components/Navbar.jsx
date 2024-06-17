@@ -9,6 +9,7 @@ const Navbar = () => {
           <Link to="/" className="text-gray-300 hover:text-white">Home</Link>
           <Link to="/about" className="text-gray-300 hover:text-white">About</Link>
           <Link to="/contact" className="text-gray-300 hover:text-white">Contact</Link>
+          <Link to="/admin" className="text-gray-300 hover:text-white">Admin</Link> {/* Added Admin link */}
         </div>
       </div>
     </nav>
